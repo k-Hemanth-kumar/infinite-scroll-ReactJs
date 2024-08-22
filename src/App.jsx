@@ -1,35 +1,30 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+  const [data,setData]=useState([]);
+  const[apiQuery,setApiQuery]=useState("");
+  const [noData,setNoData]=useState("");
+  
+  const handleApiQuery=(e)=>{
+    setData([]);
+    setNoData([]);
+    setApiQuery(e.target.value);
+    if(e.target.value.length===0){
+      setData([]);
+    }
+  }
+  return(
+    <div className='infinite-scroll-container'>
+      <div className='infinite-scroll-header'>
+        <h2>Hey, Welcome to Infinite Scrolling</h2>
+        <input type="text" value={apiQuery} name='query' id='query' className='query' 
+        placeholder='Enter input to search' onChange={handleApiQuery} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
+
+  
 }
 
 export default App
