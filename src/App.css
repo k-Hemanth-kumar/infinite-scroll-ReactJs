@@ -74,4 +74,15 @@ h2{
   border-radius: 30px;
   padding: 5px 20px;
   color: #081215;
+  width: 250px;
+  box-sizing: content-box;
+  border: #0ca8e3 solid 1px;
+}
+input.query:focus{
+  border-color: #081215;
+  outline: none;
+  box-shadow: none;
+}
+.infinite-scroll-content{
+  
 }
