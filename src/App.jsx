@@ -1,21 +1,25 @@
 import { useState } from 'react'
 import './App.css'
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getData } from './components/actionslice';
 function App() {
   const [data,setData]=useState([]);
   const[apiQuery,setApiQuery]=useState("");
   const [noData,setNoData]=useState("");
   const [error,setError]=useState(false);
-
-  
+  const store=useSelector((state)=>state.infiniteScrollContent);
+  console.log(store);
+  const dispatch=useDispatch();
+  //console.log(noData,data);
   const handleApiQuery=(e)=>{
     setData([]);
-    setNoData([]);
+    setNoData(false);
     setApiQuery(e.target.value);
     if(e.target.value.length===0){
       setData([]);
     }
-    /*getData(apiQuery,1)
+    //dispatch(getData({apiQuery,pageNumber:1}));
+    getData(apiQuery,1)
     .then((data)=>{
       if(!data.docs.length){
         setNoData(true);
@@ -25,7 +29,7 @@ function App() {
     .catch((error)=>{
       setError(true);
       console.log(error);
-    });*/
+    });
   }
   const getData=(apiQuery,pageNumber)=>{
     return new Promise(async (resolve,reject)=>{
